@@ -27,7 +27,7 @@
     <h5>Class: {{class}}</h5>
     <br>
 
-    <table class="table table-bordered text-center" id="product_table">
+    <table class="table table-bordered text-center">
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Price</th>
@@ -59,6 +59,8 @@
             </tr>
         {% endfor %}
     </table>
+
+    <table id="product_table"></table>
 
     <br>
 
@@ -122,15 +124,17 @@
     async function refreshProducts() {
         document.getElementById("product_table").innerHTML = ""
         const products = await getProducts()
-        let htmlString = `<tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Description</th>
-            <th>Date Added</th>
-        </tr>`
+        let htmlString = `
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Description</th>
+            <th scope="col">Date Added</th>
+            <th scope="col">Edit Something</th>
+        </tr>`;
         products.forEach((item) => {
             htmlString += `\n<tr>
-            <td>${item.fields.name}</td>
+            <td scope="row">${item.fields.name}</td>
             <td>${item.fields.price}</td>
             <td>${item.fields.description}</td>
             <td>${item.fields.date_added}</td>
@@ -140,7 +144,7 @@
         document.getElementById("product_table").innerHTML = htmlString
     }
     
-    refreshProducts()
+    refreshProducts
 
     function addProduct() {
         fetch("{% url 'main:add_product_ajax' %}", {

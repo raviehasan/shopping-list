@@ -114,7 +114,6 @@ def get_product_json(request):
     product_item = Product.objects.all()
     return HttpResponse(serializers.serialize('json', product_item))
 
-...
 @csrf_exempt
 def add_product_ajax(request):
     if request.method == 'POST':
