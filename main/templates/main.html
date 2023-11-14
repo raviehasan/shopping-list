@@ -27,39 +27,6 @@
     <h5>Class: {{class}}</h5>
     <br>
 
-    <table class="table table-bordered text-center">
-        <tr>
-            <th scope="col">Name</th>
-            <th scope="col">Price</th>
-            <th scope="col">Description</th>
-            <th scope="col">Date Added</th>
-            <th scope="col">Edit Something</th>
-        </tr>
-
-        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
-
-        {% for product in products %}
-            <tr>
-                <td scope="row">{{product.name}}</td>
-                <td>{{product.price}}</td>
-                <td>{{product.description}}</td>
-                <td>{{product.date_added}}</td>
-                <td>
-                    <a href="{% url 'main:edit_product' product.pk %}">
-                        <button type="button" class="btn btn-primary">
-                            Edit
-                        </button>
-                    </a>
-                    <a href="{% url 'main:delete_product' product.pk %}">
-                        <button type="button" class="btn btn-danger">
-                            Delete
-                        </button>
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
-
     <table id="product_table"></table>
 
     <br>
